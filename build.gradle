@@ -1,3 +1,10 @@
+apply plugin: 'idea'
+idea {
+	module {
+		outputDir file('build/classes/kotlin/main')
+		testOutputDir file('build/classes/kotlin/test')
+	}
+}
 buildscript {
 	ext {
 		kotlinVersion = '1.2.51'
@@ -11,6 +18,9 @@ buildscript {
 		classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
 		classpath("org.jetbrains.kotlin:kotlin-allopen:${kotlinVersion}")
 	}
+
+
+
 }
 
 apply plugin: 'kotlin'
@@ -22,6 +32,7 @@ apply plugin: 'io.spring.dependency-management'
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
+
 compileKotlin {
 	kotlinOptions {
 		freeCompilerArgs = ["-Xjsr305=strict"]
@@ -34,6 +45,11 @@ compileTestKotlin {
 		jvmTarget = "1.8"
 	}
 }
+
+jar {
+	archiveName = 'kotlin_demo.jar'
+}
+
 
 repositories {
 	mavenCentral()
